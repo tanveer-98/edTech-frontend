@@ -1,0 +1,107 @@
+@tailwind base; 
+@tailwind components;
+@tailwind utilities;
+
+::root{
+    height: 100%;
+    width: 100%;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    background:  linear-gradient(0deg , 
+    #383838 0% ,  black 60%)
+}
+
+
+.burger-animate {
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  
+  @keyframes b-animate-start {
+    0% {
+      right: 0;
+    }
+    100% {
+      left: 0;
+    }
+  }
+
+
+  .hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+  }
+  .hamburger-top,
+  .hamburger-middle,
+  .hamburger-bottom {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    top: 0;
+    right: 0;
+    background: #fff;
+    transform: rotate(0);
+    transition: all 0.5s;
+    border-radius: 30px;
+  }
+  .hamburger-middle {
+    transform: translateY(7px);
+  }
+  .hamburger-bottom {
+    transform: translateY(14px);
+    background: #fff;
+  }
+  .open .hamburger-middle {
+    display: none;
+  }
+  .open .hamburger-top {
+    transform: rotate(45deg) translateY(7px) translateX(7px);
+  }
+  .open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(7px) translateX(-8px);
+  }
+  
+
+/* HERO SECTION */
+
+
+
+@layer{
+  .left{
+    @apply flex justify-center items-center w-full h-[500px] 
+  }
+  .right{
+   @apply flex justify-center items-center w-full h-[500px] 
+  }
+
+}
+
+
+::-webkit-scrollbar{
+  width:0.5rem;
+
+}
+
+::-webkit-scrollbar-track{
+  background-color: black;
+  border-radius: 50px;
+ 
+}
+
+::-webkit-scrollbar-thumb{
+  background-color : rgb(238, 255, 0);
+  border-radius: 1rem;
+  border : 1px solid transparent ;
+  background-clip : content-box;
+}

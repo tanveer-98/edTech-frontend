@@ -1,0 +1,6 @@
+.outer{
+    height: 100px;
+    width: 100px ;
+    background: linear-gradient(0deg , from rgb(162, 170, 55) , to rgb(255, 255, 103));
+    position : absolute ;
+}
