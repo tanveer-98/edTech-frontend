@@ -6,9 +6,6 @@ const Hero = () => {
     <div className="grid grid-cols-1 md:grid-cols-2">
       <div className="left"><HeroLeft/> </div>
       <div className="right"> <HeroRight/></div>
-      
-
-
     </div>
   )
 }

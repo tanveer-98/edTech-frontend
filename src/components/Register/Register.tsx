@@ -33,7 +33,7 @@ const Register = () => {
         password: "",
         confirmPassword :""
       };
-  return <div className="flex justify-center items-center w-full h-screen">
+  return <div className="flex justify-center items-center w-full ">
 <div className="flex flex-col p-6 justify-around  rounded-lg shadow-lg bg-white max-w-md">
 
  <Formik

@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-::root{
+:root{
     height: 100%;
-    width: 100%;
+    width: 100%; 
+   
 }
 
 html{
@@ -16,7 +17,11 @@ body{
     height: 100%;
     width: 100%;
     background:  linear-gradient(0deg , 
-    #383838 0% ,  black 60%)
+    #383838 0% ,  black 60%);
+    background-attachment: fixed; 
+    /* // fix for linear gradient not taking full height  */
+    /* // note that linear gradient is an image and not color  */
+   
 }
 
 
@@ -76,8 +81,26 @@ body{
 /* HERO SECTION */
 
 
+@layer base{
+  h3{
+    @apply  bg-gradient-to-r from-yellow-100 to-yellow-400
+    bg-clip-text text-transparent
+    text-4xl md:text-6xl font-poppins 
+    font-extrabold
+    text-left
+  }
+
+  p{
+    @apply text-gray-300 font-poppins
+  }
+
+
+
+}
+
 
 @layer{
+
   .left{
     @apply flex justify-center items-center w-full h-[500px] 
   }
@@ -104,4 +127,64 @@ body{
   border-radius: 1rem;
   border : 1px solid transparent ;
   background-clip : content-box;
+}
+
+
+/* For mobile Nav */
+
+.mobile-nav {
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+/* transform : translateX(-100px) */
+}
+.mobile-nav-link a{
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  
+  transition: opacity 0.4s ease-in-out,
+  transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.mobile-nav-link  a:hover{
+  color : #ffd400;
+}
+
+.mobile-nav-link:nth-of-type(1)  {
+
+  transition-delay: 1s;
+}
+
+.mobile-nav-link:nth-of-type(2) {
+  transition-delay: 0.2s;
+}
+
+.mobile-nav-link:nth-of-type(3) {
+  transition-delay: 0.3s;
+}
+
+.mobile-nav-link:nth-of-type(4) {
+  transition-delay: 0.4s;
+}
+
+.mobile-nav-link:nth-of-type(5) {
+  transition-delay: 0.5s;
+}
+
+.mobile_open {
+  visibility: visible;
+  /* animation : fadeIn 0.5s ease-in-out; */
+  /* transition:visibility 0s, opacity 0.5s ease-in-out 0s; */
+  opacity: 1;
+  
+  transform: translateX(0);
+  animation-name : slide-right ;
+  animation-duration :3s;
+}
+
+.mobile_close {
+  /* transition : visibility 0s ease-in-out 2s , opacity 1s ease-in-out 0s; */
+  visibility: hidden;
+  opacity: 0;
+  animation: slide-right 1s ease-in-out;
+  /* transform : scaleX(0); */
+  transform : translateX(-800px)
 }

@@ -5,20 +5,35 @@ interface INavLink {
   id: string;
   title: string;
 }
+import {
+  selecttoggleNav,
+  toggleToggleNav,
+} from "../../store/globals/globalsSlice";
+import { useAppDispatch, useAppSelector } from "../../store";
+
+import NavbarMobile from "../NavbarMobile/NavbarMobile";
+import { Link } from "react-scroll";
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
+  const dispatch = useAppDispatch();
+  const toggle = useAppSelector(selecttoggleNav);
+
   const handleToggle = () => {
-    setToggle(!toggle);
+    dispatch(toggleToggleNav());
+    const element = document.getElementsByTagName("body")[0];
+
+    if (element.classList.contains("overflow-hidden")) {
+      element.classList.remove("overflow-hidden");
+    } else element.classList.add("overflow-hidden");
   };
 
   const handleClick = () => {
-
-  }
+    console.log('clicked')
+  };
 
   return (
     <nav className="w-full flex p-6 justify-between items-center navbar bg-black">
-      <div className="logo">
+      <div className={`${toggle ? "blur-lg" : ""}`}>
         <span className="font-bold font-poppins text-white  text-2xl md:text-5xl  ">
           Crystal
         </span>
@@ -26,35 +41,40 @@ const Navbar = () => {
           Coaching
         </span>
       </div>
-      
-     {/*  Desktop view LI */}
+
+      {/*  Desktop view LI */}
       <ul
-        className="list-none md:flex hidden
+        className=" md:flex hidden
     justify-end items-center flex-1"
       >
         {NavLinks.map((element: INavLink, index: number) => {
+          console.log(element.id)
           return (
-            <li
+            <Link
+              to={element.id}
+              smooth={true}
+              offset={-120}
               key={index}
-              className="font-poppins
-          font-normal cursor-pointer text-[1rem]
-          text-white mr-10
+              className="
+           cursor-pointer text-2xl
+          font-bold font-poppins text-white hover:text-yellow-300 
+           mr-10
           "
+          onClick={handleClick}
             >
-              <a href="text-white hover:text-yellow`">{element.title}</a>
-            </li>
+              {/* <a className="font-bold font-poppins text-white hover:text-yellow"> */}
+                {element.title}
+              {/* </a> */}
+            </Link>
           );
         })}
       </ul>
-      
 
       <div
-        className={`burger-animate md:hidden w-full justify-end py-3 text-center flex items-center ${
+        className={` burger-animate md:hidden w-full justify-end py-3 text-center flex items-center ${
           toggle ? "" : " b-animate-start"
         }`}
       >
-      
-
         <button
           id="menu-btn"
           className={`p-2 rounded-md z-30 inline-block ml-[10%] mr-[10%] md:hidden focus:outline-none hamburger  ${
@@ -67,6 +87,7 @@ const Navbar = () => {
           <span className="hamburger-bottom"></span>
         </button>
       </div>
+      <NavbarMobile toggleHam={handleToggle} toggle={toggle} />
     </nav>
   );
 };

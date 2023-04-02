@@ -12,16 +12,19 @@ const ButtonContainer = styled("div")({
 
 });
 
+import ReactHtmlParser from 'react-html-parser';
+
 const CustomPrimaryButton = ({
-  label,
+  children,
   additionalStyles,
   disabled,
   onClick,
   hoverStyles,
-  className
+  className,
+  type
 }: any) => {
   return (
-    <ButtonContainer>
+    // <ButtonContainer>
         <Button
           sx={{
             border : "1px solid yellow",
@@ -44,13 +47,14 @@ const CustomPrimaryButton = ({
           style={additionalStyles ? additionalStyles : {
         
           }}
+          type={type}
           disabled={disabled}
           onClick ={onClick}
         >
-        {label}
+        {children}
         </Button>
       
-    </ButtonContainer>
+    // </ButtonContainer>
   );
 };
 
