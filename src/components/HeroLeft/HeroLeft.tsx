@@ -14,7 +14,7 @@ const HeroLeft = () => {
       {/* <h3> The Best Platform For Educational Material</h3> */}
       <div className="w-full">
 
-      <h3 className="text-left">Lorem Ipsum</h3>
+      <h3 className="text-left">Crystal Coaching</h3>
       </div>
       <p className=" mt-4">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. 

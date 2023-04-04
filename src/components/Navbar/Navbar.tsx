@@ -33,12 +33,12 @@ const Navbar = () => {
 
   return (
     <nav className="w-full flex p-6 justify-between items-center navbar bg-black">
-      <div className={`${toggle ? "blur-lg" : ""}`}>
+      <div className={` md:ml-[2%] ${toggle ? "blur-lg" : ""}`}>
         <span className="font-bold font-poppins text-white  text-2xl md:text-5xl  ">
-          Lorem
+          Crystal
         </span>
         <span className=" font-poppins font-bold bg-gradient-to-tr from-lime-400 to-blue-600 text-xl md:text-4xl text-transparent bg-clip-text">
-        Ipsum
+        Coaching
         </span>
       </div>
 
