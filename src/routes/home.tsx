@@ -13,7 +13,7 @@ import AboutUs from "../components/AboutUs/AboutUs";
 import Contact from "../components/Contact/contact";
 import Footer from "../components/Footer/Footer";
 
-import { Blocks } from "react-loader-spinner";
+// import { Blocks } from "react-loader-spinner";
 import { PropagateLoader } from "react-spinners";
 const home = () => {
   const dispatch = useAppDispatch();

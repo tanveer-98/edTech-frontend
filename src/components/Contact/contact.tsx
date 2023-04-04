@@ -71,7 +71,7 @@ const Contact = () => {
         animate={controls}
         variants={Variants1}
       >
-        <Box/>
+        {/* <Box/> */}
         <h3 className="  "> WRITE TO US</h3>
         <p className=" "> Feel Free to Connect</p>
       </motion.div>
