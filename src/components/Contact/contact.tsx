@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { sendMessageEmail } from "./service";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
+import Box from '../Box/Box'
 import {
   Formik,
   Form,
@@ -65,12 +65,13 @@ const Contact = () => {
     }, [controls, inView]);
     return (
       <motion.div
-        className="w-full md:w-1/2 flex flex-col justify-start items-center"
+        className="w-full  relative md:w-1/2 flex flex-col justify-start items-center"
         ref={refHeading}
         initial="hidden"
         animate={controls}
         variants={Variants1}
       >
+        <Box/>
         <h3 className="  "> WRITE TO US</h3>
         <p className=" "> Feel Free to Connect</p>
       </motion.div>
