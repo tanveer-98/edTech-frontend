@@ -1,6 +1,32 @@
 .outer{
-    height: 100px;
-    width: 100px ;
-    background: linear-gradient(0deg , from rgb(162, 170, 55) , to rgb(255, 255, 103));
+    height: 200px;
+    width: 200px ;
+    /* background-color: yellow; */
+    background: linear-gradient(0deg , from rgb(238, 255, 0) , to rgb(255, 255, 0));
     position : absolute ;
+    background-color: rgba(251, 255, 0, 0.466);
+    /* -wfilter: blur(5px); */
+    filter: blur(5px);
+    /* z-index:0; */
+    bottom: 10px; 
+    left : 10px; 
+    transform: rotate(45deg);
+    /* transition: all 10s linear ; */
+    animation : bottom-to-top 10s infinite;
+}
+
+@media only screen and (max-width: 600px) {
+    .outer {
+        height: 60px;
+        width: 30px ;
+    }
+  }
+
+@keyframes bottom-to-top{
+    0%{
+        bottom: 0px;
+    }
+    100%{
+        top: 0px;
+    }
 }

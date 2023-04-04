@@ -35,10 +35,10 @@ const Navbar = () => {
     <nav className="w-full flex p-6 justify-between items-center navbar bg-black">
       <div className={`${toggle ? "blur-lg" : ""}`}>
         <span className="font-bold font-poppins text-white  text-2xl md:text-5xl  ">
-          Crystal
+          Lorem
         </span>
         <span className=" font-poppins font-bold bg-gradient-to-tr from-lime-400 to-blue-600 text-xl md:text-4xl text-transparent bg-clip-text">
-          Coaching
+        Ipsum
         </span>
       </div>
 
@@ -51,10 +51,10 @@ const Navbar = () => {
           console.log(element.id)
           return (
             <Link
-              to={element.id}
+              to="aboutus"
               smooth={true}
-              offset={-120}
-              key={index}
+              offset={0}
+              // key={index}
               className="
            cursor-pointer text-2xl
           font-bold font-poppins text-white hover:text-yellow-300 
@@ -64,11 +64,12 @@ const Navbar = () => {
             >
               {/* <a className="font-bold font-poppins text-white hover:text-yellow"> */}
                 {element.title}
+                {/* About Us */}
               {/* </a> */}
             </Link>
           );
         })}
-      </ul>
+      </ul>   
 
       <div
         className={` burger-animate md:hidden w-full justify-end py-3 text-center flex items-center ${
