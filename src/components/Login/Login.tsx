@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import PasswordShowHide from "./PasswordShowHide";
 import CustomPrimaryButton from "../CustomPrimaryButton/CustomPrimaryButton";
 import { PropagateLoader } from "react-spinners";
+import { login } from "./service";
 const styles = {
   label: "block text-yellow-400 text-sm font-bold pt-2 pb-1",
   field:
@@ -69,10 +70,20 @@ const Login = () => {
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(false);
                 const requiredData = {
-                  email: values.email,
+                  mail: values.email,
                   password: values.password,
                 };
-                //console.log(requiredData)
+                console.log("required Data");
+                console.log(requiredData)
+
+
+                login(requiredData)
+                .then((response=>{
+                  console.log(response.data);
+                }))
+                .catch(error=>{
+                  console.log(error.message)
+                })
                 //   register(requiredData).then(()=>{
                 //     alert('successfully registered , Please Login');
                 //     navigate('/login')
@@ -81,7 +92,7 @@ const Login = () => {
                 //     //console.log(err)
                 //     alert(`ERROR-${err.response.status} : ${err.response.data.message}`)
                 //   });
-                resetForm();
+                // resetForm(); //  UNCOMMENT THIS ON PRODUCTION
               }}
             >
               {({

@@ -107,7 +107,7 @@ const Register = () => {
                   email: values.email,
                   password: values.password,
                 };
-                //console.log(requiredData)
+                console.log(requiredData)
                 //   register(requiredData).then(()=>{
                 //     alert('successfully registered , Please Login');
                 //     navigate('/login')
@@ -116,7 +116,7 @@ const Register = () => {
                 //     //console.log(err)
                 //     alert(`ERROR-${err.response.status} : ${err.response.data.message}`)
                 //   });
-                resetForm();
+                // resetForm(); // uncomment this on production
               }}
             >
               {({
