@@ -14,12 +14,14 @@ interface IUserDetails {
 const HeroLeft = () => {
   const navigate = useNavigate();
   const handleClick = ()=>{
+    console.log('1')
     let userdetails : IUserDetails | null ;
     if(window.localStorage.getItem('userdetails') !== null ){
-
+      console.log('2')
      userdetails = JSON.parse(window.localStorage.getItem('userdetails')!);
      if(userdetails !== null)
     //  console.log(userdetails.token)
+  
      console.log(userdetails.userDetails)
      verifyToken().then(response =>{
       console.log('inside verify')
@@ -28,12 +30,13 @@ const HeroLeft = () => {
       navigate('/download')
      })
      .catch(err=>{
+      console.log('4')
       navigate('/login')
      })
     }
 
   
-    // navigate('/login')
+    navigate('/login')
   }
   return (
     <div className="text-white flex justify-center items-center ">

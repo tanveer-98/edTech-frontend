@@ -1,7 +1,13 @@
 import axios from 'axios';
 const SERVER = import.meta.env.VITE_SERVER;
 
-const token = window.localStorage.getItem('token');
+let userDetails , token : string|null = null;
+
+if(window.localStorage.getItem('userdetails')!==null){
+
+    userDetails = JSON.parse(window.localStorage.getItem('userdetails')!).userDetails;
+    token = userDetails.token;
+}
 
 export const api = axios.create({
     headers : {
