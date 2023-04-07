@@ -1,9 +1,9 @@
 import axios from 'axios';
-const server = SERVER;
+const SERVER = import.meta.env.VITE_SERVER;
 
 const token = window.localStorage.getItem('token');
 
-const api = axios.create({
+export const api = axios.create({
     headers : {
         Authorization: `Bearer ${token}` 
     }
@@ -14,4 +14,10 @@ interface IUserData{
     password : string ;
 }
 export const login  = (data : IUserData) => 
- axios.post('/api/login', data)
+ axios.post(`${SERVER}/auth/login`, data)
+
+export const verifyToken = () =>{
+    console.log("inside verify token")
+    console.log(token)
+    return api.get(`${SERVER}/auth/test`)
+}

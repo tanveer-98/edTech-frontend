@@ -1,11 +1,39 @@
 import React from 'react'
 import CustomPrimaryButton from '../CustomPrimaryButton/CustomPrimaryButton'
 import {useNavigate} from 'react-router-dom';
+import { verifyToken } from '../Login/service';
 
+
+interface IUserDetails {
+  userDetails :{
+    name : string ; 
+    token : string;
+    mail : string; 
+  }
+}
 const HeroLeft = () => {
   const navigate = useNavigate();
   const handleClick = ()=>{
-    navigate('/login')
+    let userdetails : IUserDetails | null ;
+    if(window.localStorage.getItem('userdetails') !== null ){
+
+     userdetails = JSON.parse(window.localStorage.getItem('userdetails')!);
+     if(userdetails !== null)
+    //  console.log(userdetails.token)
+     console.log(userdetails.userDetails)
+     verifyToken().then(response =>{
+      console.log('inside verify')
+
+      // console.log(response.data)
+      navigate('/download')
+     })
+     .catch(err=>{
+      navigate('/login')
+     })
+    }
+
+  
+    // navigate('/login')
   }
   return (
     <div className="text-white flex justify-center items-center ">

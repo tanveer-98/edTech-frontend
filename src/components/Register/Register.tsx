@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { register } from "../../services/register";
 import {
   Formik,
   Form,
@@ -12,6 +11,8 @@ import { FiSend } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import PasswordShowHide from "./PasswordShowHide";
 import { PropagateLoader } from "react-spinners";
+import { register } from "./service";
+
 const styles = {
   label: "block text-gray-700 text-sm font-bold pt-2 pb-1",
   field:
@@ -22,6 +23,8 @@ const styles = {
   textarea:
     "bg-gray-100 w-[300px] sm:w-[600px] lg:w-[800px] focus:shadow-outline rounded block w-full appearance-none focus:bg-gray-200 p-5",
 };
+
+
 const Register = () => {
   const [loading, setLoading] = useState(true);
 
@@ -41,13 +44,23 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   };
+ 
+  const alertHandler = (element:any )=>{
+    element.parentElement.style.display='none';
+  }
   return (
     <>
       {loading ? (
         <div className="w-screen h-screen flex justify-center items-center">
           <PropagateLoader color="#ebff00" />
         </div>
-      ) : (
+      ) : (<>
+          
+{/*           
+        <div className="alert">
+  <span className="closebtn" onClick={(e:any)=>alertHandler(e)}>&times;</span>
+  This is an alert box.
+</div> */}
         <div className="flex justify-center  h-full items-center w-full ">
           <div className="flex flex-col p-6 justify-around  rounded-lg shadow-lg bg-gradient-to-br from-yellow-100 to-yellow-400 max-w-md">
             <Formik
@@ -104,10 +117,20 @@ const Register = () => {
                 setSubmitting(false);
                 const requiredData = {
                   name: values.fName.concat(" ", values.lName),
-                  email: values.email,
+                  mail: values.email,
                   password: values.password,
                 };
                 console.log(requiredData)
+                register(requiredData).then((response)=>{
+                    const userdata = response.data;
+                    console.log(userdata);
+                    alert()
+
+                })
+                .catch((error)=>{
+                  alert(JSON.stringify(error));
+                })
+                
                 //   register(requiredData).then(()=>{
                 //     alert('successfully registered , Please Login');
                 //     navigate('/login')
@@ -307,6 +330,7 @@ const Register = () => {
             </span>
           </div>
         </div>
+          </>
       )}
     </>
   );

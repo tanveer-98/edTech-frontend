@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { register } from "../../services/register";
+// import { register } from "../../services/register";
 import {
   Formik,
   Form,
@@ -80,6 +80,8 @@ const Login = () => {
                 login(requiredData)
                 .then((response=>{
                   console.log(response.data);
+                  window.localStorage.setItem('userdetails' , JSON.stringify(response.data))
+                 navigate('/download')
                 }))
                 .catch(error=>{
                   console.log(error.message)
