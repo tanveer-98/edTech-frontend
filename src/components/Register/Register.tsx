@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import PasswordShowHide from "./PasswordShowHide";
 import { PropagateLoader } from "react-spinners";
 import { register } from "./service";
+import CustomAlertBox from "../CustomAlertBox/CustomAlertBox";
+import { ToastContainer, toast } from "react-toastify";
 
 const styles = {
   label: "block text-gray-700 text-sm font-bold pt-2 pb-1",
@@ -61,6 +63,8 @@ const Register = () => {
   <span className="closebtn" onClick={(e:any)=>alertHandler(e)}>&times;</span>
   This is an alert box.
 </div> */}
+   <CustomAlertBox/>
+   {/* <ToastContainer/> */}
         <div className="flex justify-center  h-full items-center w-full ">
           <div className="flex flex-col p-6 justify-around  rounded-lg shadow-lg bg-gradient-to-br from-yellow-100 to-yellow-400 max-w-md">
             <Formik
@@ -124,11 +128,44 @@ const Register = () => {
                 register(requiredData).then((response)=>{
                     const userdata = response.data;
                     console.log(userdata);
-                    alert()
+                    // toast.success('🦄 Successfully Registered!', {
+                    //   position: "top-center",
+                    //   autoClose: 3000,
+                    //   hideProgressBar: false,
+                    //   closeOnClick: true,
+                    //   pauseOnHover: true,
+                    //   draggable: true,
+                    //   progress: undefined,
+                    //   theme: "colored",
+                      
+                    //   });
+                      toast.success('Successfully Registered!', {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        });
+                        
+                    // alert("Successfully Registered")
 
                 })
                 .catch((error)=>{
-                  alert(JSON.stringify(error));
+                  console.log(error)
+                  toast.error(JSON.stringify(error.response.data), {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
+                  // alert(JSON.stringify(error.response.data.message));
                 })
                 
                 //   register(requiredData).then(()=>{

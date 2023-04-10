@@ -87,8 +87,9 @@ html, body, #app, #app>div {
     @apply bg-gradient-to-r from-yellow-100 to-yellow-400
     bg-clip-text text-transparent
     text-4xl md:text-6xl font-poppins 
-    font-extrabold
-    text-left;
+    font-bold
+    text-left
+    py-2;
   }
 
   p {
