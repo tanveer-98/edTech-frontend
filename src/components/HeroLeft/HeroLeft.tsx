@@ -45,12 +45,10 @@ const HeroLeft = () => {
       {/* <h3> The Best Platform For Educational Material</h3> */}
       <div className="w-full">
 
-      <h3 className="text-left">Crystal Coaching</h3>
+      <h3 className="text-left">ALL OF YOUR EDUCATIONAL MATERIALS AT ONE PLACE</h3>
       </div>
       <p className=" mt-4">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Et eveniet odit voluptatum recusandae nihil architecto 
-        deserunt harum sapiente.
+      Welcome to Crystal Coaching Classes! We are a team of highly experienced educators, founded by a group of NITians, dedicated to providing top-quality education to students in classes 8 to 12, as well as those preparing for competitive exams like JEE and NEET.
 
       </p>
       <div className="flex justify-start w-full mt-[20px]">

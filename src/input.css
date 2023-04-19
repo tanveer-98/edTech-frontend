@@ -99,10 +99,10 @@ html, body, #app, #app>div {
 
 @layer {
   .left {
-    @apply flex justify-center items-center w-full h-[500px];
+    @apply flex justify-center items-center w-full h-full;
   }
   .right {
-    @apply flex justify-center items-center w-full h-[500px];
+    @apply flex justify-center items-center w-full h-full;
   }
 }
 

@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   const handleClick = () => {
-    console.log('clicked')
+    console.log("clicked");
   };
 
   return (
@@ -38,7 +38,7 @@ const Navbar = () => {
           Crystal
         </span>
         <span className=" font-poppins font-bold bg-gradient-to-tr from-lime-400 to-blue-600 text-xl md:text-4xl text-transparent bg-clip-text">
-        Coaching
+          Coaching
         </span>
       </div>
 
@@ -47,29 +47,42 @@ const Navbar = () => {
         className=" md:flex hidden
     justify-end items-center flex-1"
       >
-        {NavLinks.map((element: INavLink, index: number) => {
-          console.log(element.id)
-          return (
-            <Link
-              to="aboutus"
-              smooth={true}
-              offset={0}
-              // key={index}
-              className="
+        <Link
+          to="aboutus"
+          smooth={true}
+          offset={600}
+          // key={index}
+          className="
            cursor-pointer text-2xl
           font-bold font-poppins text-white hover:text-yellow-300 
            mr-10
           "
           onClick={handleClick}
-            >
-              {/* <a className="font-bold font-poppins text-white hover:text-yellow"> */}
-                {element.title}
-                {/* About Us */}
-              {/* </a> */}
-            </Link>
-          );
-        })}
-      </ul>   
+        >
+          {/* <a className="font-bold font-poppins text-white hover:text-yellow"> */}
+          ABOUT US
+          {/* About Us */}
+          {/* </a> */}
+        </Link>
+
+        <Link
+          to="aboutus"
+          smooth={true}
+          offset={800}
+          // key={index}
+          className="
+           cursor-pointer text-2xl
+          font-bold font-poppins text-white hover:text-yellow-300 
+           mr-10
+          "
+          onClick={handleClick}
+        >
+          {/* <a className="font-bold font-poppins text-white hover:text-yellow"> */}
+          CONTACT US
+          {/* About Us */}
+          {/* </a> */}
+        </Link>
+      </ul>
 
       <div
         className={` burger-animate md:hidden w-full justify-end py-3 text-center flex items-center ${

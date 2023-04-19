@@ -73,7 +73,12 @@ const Contact = () => {
       >
         {/* <Box/> */}
         <h3 className="  "> WRITE TO US</h3>
-        <p className=" "> Feel Free to Connect</p>
+        <div className="text-left mb-4"> 
+        <span className="text-2xl text-slate-500 ">
+          FEEL FREE TO CONNECT
+        </span> 
+          </div>
+        <p className="text-center"> Join our coaching classes today and experience a comprehensive and well-rounded education that will help you achieve your academic goals. Contact us to learn more about our course or curriculum and to schedule your first session.</p>
       </motion.div>
     );
   }
