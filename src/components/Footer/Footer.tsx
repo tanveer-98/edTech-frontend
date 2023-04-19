@@ -34,7 +34,7 @@ const Footer = () => {
 
           <div className="flex mt-3 space-x-6 sm:justify-center md:mt-4 justify-center">
             <a
-              href="#"
+              href="https://www.facebook.com/crystalcoaching.in"
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
