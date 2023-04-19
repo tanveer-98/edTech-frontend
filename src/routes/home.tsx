@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "../store/index";
 import AboutUs from "../components/AboutUs/AboutUs";
 import Contact from "../components/Contact/contact";
 import Footer from "../components/Footer/Footer";
-
+import Location from '../components/Location'
 // import { Blocks } from "react-loader-spinner";
 import { PropagateLoader } from "react-spinners";
 const home = () => {
@@ -74,6 +74,7 @@ const home = () => {
             <Hero />
             <AboutUs />
             <Contact />
+            <Location/>
             <Footer />
           </div>
         </div>
