@@ -78,7 +78,7 @@ const Contact = () => {
           FEEL FREE TO CONNECT
         </span> 
           </div>
-        <p className="text-center"> Join our coaching classes today and experience a comprehensive and well-rounded education that will help you achieve your academic goals. Contact us to learn more about our course or curriculum and to schedule your first session.</p>
+        <p className="text-center px-10"> Join our coaching classes today and experience a comprehensive and well-rounded education that will help you achieve your academic goals. Contact us to learn more about our course or curriculum and to schedule your first session.</p>
       </motion.div>
     );
   }

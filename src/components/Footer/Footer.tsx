@@ -4,16 +4,19 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 ">
       <div className="mx-auto w-full ">
-        <div className="  px-4 py-6 bg-gradient-to-b from-[#474747] bg-[#2e2e2e] dark:bg-gray-700 md:flex flex-col md:items-center md:justify-between">
+        <div className="px-4 py-6 bg-gradient-to-b from-[#474747] bg-[#2e2e2e] dark:bg-gray-700 md:flex flex-col md:items-center md:justify-between">
           <div className="flex justify-center flex-1 flex-col font-poppins text-sm text-gray-300 dark:text-gray-300 sm:text-center">
-            <div className="w-full flex justify-center tracking-widest">
-              © 2023{" "}
+            <div className="w-full flex flex-col md:flex-row  justify-center tracking-widest">
+              <div className="flex justify-center">
+              © 2023
               <a
                 className="mx-2 text-blue-500 hover:text-blue-300"
                 href="http://Crystalcoaching.in"
               >
-                CrystalCoaching
+                Crystal Coaching
               </a>
+              </div>
+            
               <span className="flex justify-center tracking-widest">
               All Rights Reserved.
             </span>

@@ -15,6 +15,8 @@ import Home from './routes/home'
 import Login from './routes/login'
 import Register from './routes/register'
 import DriveRedirectPage from "./components/DriveRedirectPage/DriveRedirectPage";
+import AdminLoginPage from './components/AdminLoginPage/AdminLoginPage'
+import AdminHome from "./components/AdminHome/AdminHome";
 function App() {
   return (
     <Routes>
@@ -22,6 +24,11 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/download" element={<DriveRedirectPage/>}/>
+      <Route path="/admin" element={<AdminHome/>}>
+        <Route  index path="/admin/login" element={<AdminLoginPage/>}/>
+        <Route path="/admin/home" element={<AdminHome/>}/>
+      </Route>
+      
     </Routes>
   );
 }
