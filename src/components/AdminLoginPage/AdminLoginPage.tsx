@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import { register } from "../../services/register";
+import _ from "lodash";
 import {
   Formik,
   Form,
@@ -38,6 +39,7 @@ const Login = () => {
     navigate("/admin/register");
   };
   const formInitialValues = {
+    name: "",
     email: "",
     password: "",
   };
@@ -55,6 +57,12 @@ const Login = () => {
               validate={(values) => {
                 const errors: any = {};
 
+                if (!values.name) {
+                  errors.name = "Name is required";
+                } else if (!/^[A-Za-z ]+$/.test(values.name)) {
+                  errors.name = "Name can contain only alphabets";
+                }
+
                 if (!values.email) {
                   errors.email = "Email is Required";
                 } else if (
@@ -70,22 +78,36 @@ const Login = () => {
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(false);
                 const requiredData = {
+                  name: _.trim(values.name),
                   mail: values.email,
                   password: values.password,
                 };
                 console.log("required Data");
-                console.log(requiredData)
-
+                console.log(requiredData);
 
                 login(requiredData)
-                .then((response=>{
-                  console.log(response.data);
-                  window.localStorage.setItem('userdetails' , JSON.stringify(response.data))
-                 navigate('/download')
-                }))
-                .catch(error=>{
-                  console.log(error.message)
-                })
+                  .then((response) => {
+                    if (response.data.response) {
+                      window.sessionStorage.setItem(
+                        "token",
+                        response?.data?.token
+                      );
+                      // donot do JSON.stringify(response.data.token);
+
+                      navigate("/admin");
+                    }
+
+                    // console.log(response.data);
+                    // window.localStorage.setItem(
+                    //   "userdetails",
+                    //   JSON.stringify(response.data)
+                    // );
+
+                    // navigate("/download");
+                  })
+                  .catch((error) => {
+                    console.log(error.message);
+                  });
                 //   register(requiredData).then(()=>{
                 //     alert('successfully registered , Please Login');
                 //     navigate('/login')
@@ -107,6 +129,30 @@ const Login = () => {
               }) => (
                 <div className="w-full flex justify-center my-10 ">
                   <Form className=" form-training w-[300px] sm:w-[600px] lg:w-[800px]">
+                    <div className="form-group row py-sm-2 px-sm-3 ">
+                      <label className={styles.label} htmlFor="name">
+                        Name
+                        {errors.name ? (
+                          <span className={styles.errorMsg}>*</span>
+                        ) : (
+                          ""
+                        )}
+                      </label>
+                      <Field
+                        className={`${styles.field} ${
+                          touched.name && errors.name ? "is-invalid" : ""
+                        }`}
+                        type="text"
+                        name="name"
+                        placeholder="Enter Full Name ( Case Sensitive )"
+                      />
+
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className={styles.errorMsg}
+                      />
+                    </div>
                     <div className="form-group row py-sm-2 px-sm-3 ">
                       <label className={styles.label} htmlFor="email">
                         Email
@@ -173,23 +219,23 @@ const Login = () => {
                 </div>
               )}
             </Formik>
-            <span>
+            {/* <span>
               Already Have an Account ?{" "}
-              {/* 
+              
           <CustomPrimaryButton
             className="bg-transparent text-orange-400 hover:cursor-pointer hover:text-orange-600 "
           
           onClick={redirectRegister}>
             Login
 
-          </CustomPrimaryButton> */}
+          </CustomPrimaryButton>
               <button
                 className="bg-transparent text-orange-400 hover:cursor-pointer hover:text-orange-600 "
                 onClick={redirectRegister}
               >
                 Register
               </button>{" "}
-            </span>
+            </span> */}
           </div>
         </div>
       )}

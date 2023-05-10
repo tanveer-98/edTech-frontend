@@ -62,7 +62,7 @@ const adminSlice = createSlice({
       state.user = {};
       state.jwtToken = "";
       state.verified = false;
-      sessionStorage.removeItem("jwtToken");
+      sessionStorage.removeItem("token");
       sessionStorage.removeItem("user");
     },
   },

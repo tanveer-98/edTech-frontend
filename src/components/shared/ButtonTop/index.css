@@ -1,0 +1,15 @@
+.btnTop{
+    @apply relative flex  rounded-3xl transition-all duration-300
+    ease-linear first-letter:text-green-500  items-center 
+    justify-center h-12 w-12 my-2 mx-auto shadow-lg ;
+
+}
+
+.btnTop:hover{
+    @apply bg-green-300 rounded-full
+}
+
+.btnTop-tooltip{
+    @apply  absolute py-2 px-5 w-auto right-20 bg-[color:var(--color-primary)] shadow-md rounded-md 
+    text-white text-lg font-bold transition-all duration-200  min-w-max scale-0
+}

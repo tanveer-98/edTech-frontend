@@ -1,0 +1,74 @@
+.darkmode-toggler{
+    height:100%;
+    display:flex;
+    align-items:center;
+}
+#darkmode-label{
+    width:7rem;
+    height:3.302rem;
+    position: relative;
+    display:block; 
+    background:#ebebeb;
+    border-radius: 20rem;
+    box-shadow: inset 0 .5rem 1.5rem rgba(0,0,0,0.4) , inset 0 -.5rem 1.5rem rgba(255,255,255,0.4);
+    cursor:pointer;
+    transition: all 0.5s linear;
+}
+
+#darkmode-label:after{
+    content: "";
+    width:3rem;
+    height:3rem; 
+    position:absolute; 
+    top:.16rem;
+    left:.134rem;
+    background: linear-gradient(180deg,#ffcc89,#d8860b);
+    border-radius : 18rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+    transition: 0.4s;
+}
+ #darkmode-input{
+    width: 0; 
+    height:0;
+    visibility: hidden;
+}
+
+ #darkmode-input:checked + #darkmode-label{
+    background : #242424;
+}
+
+ #darkmode-input:checked + #darkmode-label:after {
+    left:6.857rem;
+    transform:translateX(-100%);
+    background: linear-gradient(180deg,#777,#3a3a3a);
+
+}
+
+#darkmode-label:active:after{
+    width: 3.638rem;
+    /* transition:1s; */
+}
+#darkmode-label img {
+    position:absolute; 
+    width:2rem; 
+    top:.66rem;
+    /* left:5rem; */
+    z-index:100;
+}
+#darkmode-label img.sun{
+    left:.6rem;
+    fill:#fff;
+    transition:0.5s;
+}
+#darkmode-label img.moon{
+    left:4.45rem;
+    fill:#7e7e7e;
+    transition:0.5s;
+}
+#darkmode-input:checked + #darkmode-label img.sun{
+ fill : #7e7e7e;
+}
+
+#darkmode-input:checked + #darkmode-label img.moon{
+    fill : #7e7e7e;
+}

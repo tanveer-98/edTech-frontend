@@ -1,5 +1,5 @@
 import axios from 'axios';
-const VITE_SERVERURL = `${import.meta.env.VITE_SERVERURL}/api`;
+const VITE_SERVER = `${import.meta.env.VITE_SERVER}`;
 
 
 export function VerifyJWT(jwtToken : string){
@@ -7,15 +7,15 @@ export function VerifyJWT(jwtToken : string){
     // if jws token is null then send back a random Bearer token that will fail 
      
     if (jwtToken === null) {
-        axios.get(`${VITE_SERVERURL}/login/verify`, {
+        axios.post(`${VITE_SERVER}/auth/verify`,{}, {
           headers: {
-            "Authorization": `Bearer ${jwtToken}`,
+            "Authorization": "Bearer "+ jwtToken,
           },
         });
       }
-      return axios.get(`${VITE_SERVERURL}/login/verify`, {
+      return axios.post(`${VITE_SERVER}/auth/verify`, {},{
         headers: {
-            "Authorization": `Bearer ${jwtToken}`,
+            "Authorization":  "Bearer "+ jwtToken,
         },
       });
 }
@@ -24,7 +24,7 @@ export function VerifyJWT(jwtToken : string){
 
 //Route for Admin Login 
 export function AdminLogin(formData: any) {
-    return axios.post(`${VITE_SERVERURL}/login`, formData, {
+    return axios.post(`${VITE_SERVER}/login`, formData, {
       headers: {
         "Content-Type": "application/json",
       },
