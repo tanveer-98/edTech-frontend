@@ -2,9 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import { docsApi } from "../services/docs";
 import globalsReducer from "./globals/globalsSlice";
-import adminReducer from './admin/adminSlice';
-
-
+import adminReducer from "./admin/adminSlice";
+import noticeReducer from "./notice/noticeSlice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -12,10 +11,9 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   reducer: {
     globals: globalsReducer,
-    admin : adminReducer , 
- 
+    admin: adminReducer,
+    notice: noticeReducer,
     [docsApi.reducerPath]: docsApi.reducer,
-  
   },
 });
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

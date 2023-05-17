@@ -12,7 +12,8 @@ import { useAppDispatch, useAppSelector } from "../store/index";
 import AboutUs from "../components/AboutUs/AboutUs";
 import Contact from "../components/Contact/contact";
 import Footer from "../components/Footer/Footer";
-import Location from '../components/Location'
+import Gallery from "../components/Gallery/Gallery";
+import Location from "../components/Location";
 // import { Blocks } from "react-loader-spinner";
 import { PropagateLoader } from "react-spinners";
 const home = () => {
@@ -56,6 +57,13 @@ const home = () => {
                 toggle ? "blur-lg pointer-events-none" : "pointer-events-auto"
               } flex flex-col w-full gap-10`}
             >
+              <Gallery />
+            </div>
+            <div
+              className={` ${
+                toggle ? "blur-lg pointer-events-none" : "pointer-events-auto"
+              } flex flex-col w-full gap-10`}
+            >
               <Contact />
             </div>
 
@@ -73,8 +81,9 @@ const home = () => {
             <Navbar />
             <Hero />
             <AboutUs />
+            <Gallery />
             <Contact />
-            <Location/>
+            <Location />
             <Footer />
           </div>
         </div>
