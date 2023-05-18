@@ -11,6 +11,9 @@ interface IAdminNotice {
   notice: INotice;
   noticeAll: [INotice] | [];
   loading: "pending" | "idle" | "succeded" | "rejected";
+  editModal : boolean ; 
+  addModal : boolean ; 
+  currentNoticeId : number | null
 }
 
 export const fetchNotices = createAsyncThunk(
@@ -36,19 +39,29 @@ export const fetchNotice = createAsyncThunk(
   }
 );
 
-
-
-
 const initialState = {
   loading: "idle",
   notice: {},
   noticeAll: [],
+  editModal  :false ,
+  addModal : false ,
+  currentNoticeId : null
 } as IAdminNotice;
 
 const noticeSlice = createSlice({
   name: "admin",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleEditModal : (state)=>{
+      state.editModal = !state.editModal;
+    },
+    toggleAddModal : (state)=>{
+      state.addModal = !state.addModal;
+    },
+    selectCurrentNoticeId : (state , action) =>{
+      state.currentNoticeId = action.payload.noticeid;
+    }
+  },
   extraReducers: (builder: ActionReducerMapBuilder<IAdminNotice>) => {
     builder
       .addCase(fetchNotices.fulfilled, (state, action) => {
@@ -74,15 +87,19 @@ const noticeSlice = createSlice({
       .addCase(fetchNotice.pending, (state: any) => {
         state.loading = "pending";
         // state.verified = false;
-      });
+      });                                                                 
   },
 });
 
-export const {} = noticeSlice.actions;
+export const {toggleEditModal , toggleAddModal} = noticeSlice.actions;
 
 export const selectNotices = (state: RootState) => state.notice.noticeAll;
+export const selectNotice  = (state : RootState)=> state.notice.notice;
 export const selectUser = (state: RootState) => state.notice.notice;
-export const selectLoadingLogin = (state: RootState) => state.notice.loading;
+export const selectLoading = (state: RootState) => state.notice.loading;
+export const selectAddModal = (state: RootState) => state.notice.addModal;
+export const selectEditModal = (state: RootState) => state.notice.editModal;
+export const selectCurrentNoticeId = (state: RootState) => state.notice.currentNoticeId;
 
 //default export
 

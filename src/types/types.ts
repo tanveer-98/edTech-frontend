@@ -2,7 +2,7 @@ export type DocsList = Array<{ name: string; url: string }>;
 
 export interface INotice {
   id?: string;
-  dateCreated: Date;
+  dateCreated?: Date;
   notice?: string;
 }
 

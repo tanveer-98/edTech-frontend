@@ -1,5 +1,4 @@
 import React, { useMemo, useEffect } from "react";
-import { Document } from "react-pdf";
 import pdf from "./members.pdf";
 import { Column } from "react-table";
 
@@ -16,22 +15,22 @@ import { COLUMNS } from "./ReactTable/columns";
 // import DATA from './members.json'
 import { Button } from "../shared/Button";
 import {
-  fetchMembers,
-  postMembers_,
-  selectLoading,
+ selectNotices,
+ selectLoading,
+  toggleAddModal,
   selectAddModal,
   selectEditModal,
-  selectMembers,
-  toggleAddModal,
   toggleEditModal,
-} from "../../store/members/membersSlice";
+  fetchNotice,
+  fetchNotices,
+} from "../../store/notice/noticeSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
 import AddFormModal from "./addForm";
 import EditFormModal from "./editForm";
 // import {useDispatch}  from 'react-redux'
 // import { useColumns } from './ReactTable/columns';
 const Members = () => {
-  const data = useAppSelector(selectMembers);
+  const data = useAppSelector(selectNotices);
   const loading = useAppSelector(selectLoading);
   const dispatch = useAppDispatch();
 
@@ -43,7 +42,7 @@ const Members = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchMembers()).then(() => {
+    dispatch(fetchNotices()).then(() => {
       // console.log("FETCHED Members");
     });
   }, []);

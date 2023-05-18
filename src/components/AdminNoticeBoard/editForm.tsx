@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from "react";
-// import { getMembersUploadSign } from "../../services/members";
+// import { getNoticesUploadSign } from "../../services/Notices";
 import {
   Formik,
   Form,
@@ -13,11 +13,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PasswordShowHide from "../shared/PasswordShowHide";
 import { useAppDispatch, useAppSelector } from "../../store";
-import {editMembers_, fetchMember, postMembers_ } from "../../store/members/membersSlice";
+import {editNotices_, fetchNotice, postNotices_ } from "../../store/Notices/NoticesSlice";
 import MyTextArea from "./shared/TextArea";
 import { Button } from "./shared/Button";
 import { INotice, INoticeEdit } from "../../types/types";
-import {selectMembers,selectCurrentMemberId,selectCurrentMember} from '../../store/members/membersSlice'
+import {selectNotices,selectCurrentNoticeId,selectNotice} from '../../store/notice/noticeSlice'
 const styles = {
   label: "block text-gray-700 text-sm font-bold pt-2 pb-1",
   field:
@@ -28,11 +28,10 @@ const styles = {
   textarea:
     "bg-gray-100 w-[300px] sm:w-[600px] lg:w-[800px] focus:shadow-outline rounded block w-full appearance-none focus:bg-gray-200 p-5",
 };
-import { useCloudinary } from "../../hooks/cloudinary"; // CUSTOM CLOUDINARY HOOK
-import {toggleEditModal} from '../../store/members/membersSlice'
-const MembersModal = () => {
-  const currentMemberId = useAppSelector<string|null>(selectCurrentMemberId)
-  const currentMember = useAppSelector(selectCurrentMember)
+import {toggleEditModal} from '../../store/notice/noticeSlice'
+const NoticesModal = () => {
+  const currentNoticeId = useAppSelector<number|null>(selectCurrentNoticeId)
+  const currentNotice = useAppSelector(selectNotice)
   const dispatch = useAppDispatch();
 
 
@@ -41,12 +40,10 @@ const MembersModal = () => {
     navigate("/login");
   };
   const formInitialValues = {
-    constituency: currentMember.constituency,
-    candidateName: currentMember.candidateName,
-    phone: currentMember.phone,
-    symbol: currentMember.symbol,
-    photo: currentMember.photo,
-  } as IMember;
+  id: currentNoticeId?.toString(), // returns undefined if currentNoticeId is null or undefined skipping the type error
+  notice : currentNotice.notice,
+  dateCreated : currentNotice.dateCreated
+  } as INotice;
   
   // // console.log("VITE CLOUD NAME: " + import.meta.env.VITE_CLOUD_NAME);
   // // console.log("VITE CLOUD API KEY: " + import.meta.env.VITE_CLOUD_API_KEY);
@@ -66,7 +63,7 @@ const MembersModal = () => {
         <div className="relative rounded-lg  bg-white shadow dark:bg-gray-700">
           <div className="flex items-start justify-between rounded-t border-b p-4 dark:border-gray-600">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              EDIT MEMBER
+              EDIT Notice
             </h3>
             <button
               type="button"
@@ -97,11 +94,8 @@ const MembersModal = () => {
                 initialValues={formInitialValues}
                 validate={(values) => {
                   const errors: any = {};
-                  if (!values.phone) {
-                    errors.phone = "Phone Number is Required";
-                  } else if (!/^[0-9]{10,10}$/.test(values.phone)) {
-                    errors.phone =
-                      "Phone should not contain special characters and should be of length 10";
+                  if (!values.notice) {
+                    errors.phone = "Notice is Required";
                   }
         
                   if (!values.constituency) {
@@ -127,16 +121,16 @@ const MembersModal = () => {
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                   setSubmitting(false);
                   const requiredData = {
-                    id: currentMemberId ,
+                    id: currentNoticeId ,
                     constituency: values.constituency,
                     candidateName: values.candidateName,
                     phone: values.phone,
                     symbol: url1,
                     photo: url2,
-                  } as IMemberEdit;
+                  } as INoticeEdit;
                   // console.log("REQUIRED DATA: ", requiredData);
                   dispatch(
-                    editMembers_(requiredData)
+                    editNotices_(requiredData)
                   )
                     .then(() => {
       
@@ -355,4 +349,4 @@ const MembersModal = () => {
   );
 };
 
-export default MembersModal;
+export default NoticesModal;
