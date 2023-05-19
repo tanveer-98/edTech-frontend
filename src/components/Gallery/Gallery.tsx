@@ -32,7 +32,7 @@ const Gallery = () => {
                   <Tilt>
                     <div onClick ={()=>toggleModal(photo)} className="w-60 md:w-80 hover:scale-110 hover:cursor-pointer  transition-all duration-200 ease-linear bg-transparent p-3">
                       <img className="h-52 w-full object-cover" src={photo} />
-                      <ul className="mt-3 flex flex-wrap">
+                      {/* <ul className="mt-3 flex flex-wrap">
                         <li className="mr-auto">
                           <a
                             href="#"
@@ -105,7 +105,7 @@ const Gallery = () => {
                             3
                           </a>
                         </li>
-                      </ul>
+                      </ul> */}
                     </div>
                   </Tilt>
                 </>
