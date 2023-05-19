@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 // import { getNoticesUploadSign } from "../../services/Notices";
 import {
   Formik,
@@ -13,11 +13,15 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PasswordShowHide from "../shared/PasswordShowHide";
 import { useAppDispatch, useAppSelector } from "../../store";
-import {editNotices_, fetchNotice, postNotices_ } from "../../store/Notices/NoticesSlice";
+
 import MyTextArea from "./shared/TextArea";
 import { Button } from "./shared/Button";
 import { INotice, INoticeEdit } from "../../types/types";
-import {selectNotices,selectCurrentNoticeId,selectNotice} from '../../store/notice/noticeSlice'
+import {
+  selectNotices,
+  selectCurrentNoticeId,
+  selectNotice,
+} from "../../store/notice/noticeSlice";
 const styles = {
   label: "block text-gray-700 text-sm font-bold pt-2 pb-1",
   field:
@@ -28,30 +32,29 @@ const styles = {
   textarea:
     "bg-gray-100 w-[300px] sm:w-[600px] lg:w-[800px] focus:shadow-outline rounded block w-full appearance-none focus:bg-gray-200 p-5",
 };
-import {toggleEditModal} from '../../store/notice/noticeSlice'
+import { toggleEditModal } from "../../store/notice/noticeSlice";
 const NoticesModal = () => {
-  const currentNoticeId = useAppSelector<number|null>(selectCurrentNoticeId)
-  const currentNotice = useAppSelector(selectNotice)
+  const currentNoticeId = useAppSelector<number | null>(selectCurrentNoticeId);
+  const currentNotice = useAppSelector(selectNotice);
   const dispatch = useAppDispatch();
-
 
   const navigate = useNavigate();
   const redirectLogin = () => {
     navigate("/login");
   };
   const formInitialValues = {
-  id: currentNoticeId?.toString(), // returns undefined if currentNoticeId is null or undefined skipping the type error
-  notice : currentNotice.notice,
-  dateCreated : currentNotice.dateCreated
+    id: currentNoticeId?.toString(), // returns undefined if currentNoticeId is null or undefined skipping the type error
+    notice: currentNotice.notice,
+    dateCreated: currentNotice.dateCreated,
   } as INotice;
-  
+
   // // console.log("VITE CLOUD NAME: " + import.meta.env.VITE_CLOUD_NAME);
   // // console.log("VITE CLOUD API KEY: " + import.meta.env.VITE_CLOUD_API_KEY);
 
-  useEffect(()=>{
+  useEffect(() => {
     // console.log("inside use effect of edit form1 ")
     // console.log()
-  },[])
+  }, []);
   return (
     <div
       id="defaultModal"
@@ -69,7 +72,7 @@ const NoticesModal = () => {
               type="button"
               className="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
               data-modal-toggle="defaultModal"
-              onClick = {()=>dispatch(toggleEditModal())}
+              onClick={() => dispatch(toggleEditModal())}
             >
               <svg
                 aria-hidden="true"
@@ -97,49 +100,23 @@ const NoticesModal = () => {
                   if (!values.notice) {
                     errors.phone = "Notice is Required";
                   }
-        
-                  if (!values.constituency) {
-                    errors.constituency = "Constituency Name is Required";
-                  } else if (!/^[A-Za-z]{1,30}$/.test(values.constituency)) {
-                    errors.constituency =
-                      "Constituency Name should not contain special characters or numbers.";
-                  }
-        
-                  if (!values.candidateName) {
-                    errors.candidateName = "Candidate Name is required";
-                  } else if (
-                    !/^[A-Za-z]{1,30}$/.test(values.candidateName)
-                  ) {
-                    errors.candidateName = "Invalid candidateName Name";
-                  }
-        
-                 
+
                   return errors;
                 }}
-
-                
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                   setSubmitting(false);
                   const requiredData = {
-                    id: currentNoticeId ,
-                    constituency: values.constituency,
-                    candidateName: values.candidateName,
-                    phone: values.phone,
-                    symbol: url1,
-                    photo: url2,
+                   notice : values.notice
                   } as INoticeEdit;
                   // console.log("REQUIRED DATA: ", requiredData);
-                  dispatch(
-                    editNotices_(requiredData)
-                  )
-                    .then(() => {
-      
-                      alert("successfully updated profile");
-                      dispatch(toggleEditModal());
-                    })
-                    .catch((err:Error) => {
-                      alert("Unsuccessful update" + (err).message);
-                    });
+                  // dispatch(editNotices_(requiredData))
+                  //   .then(() => {
+                  //     alert("successfully updated profile");
+                  //     dispatch(toggleEditModal());
+                  //   })
+                  //   .catch((err: Error) => {
+                  //     alert("Unsuccessful update" + err.message);
+                  //   });
                   resetForm();
                 }}
               >
@@ -156,7 +133,7 @@ const NoticesModal = () => {
                       <div className="form-group row py-sm-1 px-sm-3">
                         <label className={styles.label} htmlFor="constituency">
                           CONSTITUENCY
-                          {errors.constituency ? (
+                          {errors.notice ? (
                             <span className={styles.errorMsg}>*</span>
                           ) : (
                             ""
@@ -164,7 +141,7 @@ const NoticesModal = () => {
                         </label>
                         <Field
                           className={`${styles.field} ${
-                            touched.constituency && errors.constituency
+                            touched.notice && errors.notice
                               ? "is-invalid"
                               : ""
                           }`}
@@ -178,130 +155,8 @@ const NoticesModal = () => {
                           className={styles.errorMsg}
                         />
                       </div>
-                      <div className="form-group row py-sm-1 px-sm-3">
-                        <label className={styles.label} htmlFor="candidateName">
-                          CANDIDATE NAME
-                          {errors.candidateName ? (
-                            <span className={styles.errorMsg}>*</span>
-                          ) : (
-                            ""
-                          )}
-                        </label>
-                        <Field
-                          className={`${styles.field} ${
-                            touched.candidateName && errors.candidateName
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                          type="text"
-                          name="candidateName"
-                          placeholder="Candidate Name"
-                        />
-                        <ErrorMessage
-                          name="candidateName"
-                          component="span"
-                          className={styles.errorMsg}
-                        />
-                      </div>
-                      <div className="form-group row py-sm-2 px-sm-3">
-                        <label className={styles.label} htmlFor="phone">
-                          PHONE
-                          {errors.phone ? (
-                            <span className={styles.errorMsg}>*</span>
-                          ) : (
-                            ""
-                          )}
-                        </label>
-                        <Field
-                          className={`${styles.field} ${
-                            touched.phone && errors.phone ? "is-invalid" : ""
-                          }`}
-                          type="text"
-                          name="phone"
-                          placeholder="Phone Number"
-                        />
-
-                        <ErrorMessage
-                          name="phone"
-                          component="div"
-                          className={styles.errorMsg}
-                        />
-                      </div>
-                      <div className="form-group row py-sm-2  px-sm-3 my-2 pb-5">
-                        <label className={styles.label} htmlFor="profileurl">
-                          Upload Symbol
-                        </label>
-                        <Field
-                          className={`${styles.field} ${
-                            touched.symbol && errors.symbol ? "is-invalid" : ""
-                          }`}
-                          type="text"
-                          name="symbol"
-                          value={url1}
-                          
-                          disabled
-                        />
-                        <Button
-                          onClick={(
-                            e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                          ) => {
-                            e.preventDefault();
-                            upload1();
-                          }}
-                          type="button"
-                        >
-                          UPLOAD
-                        </Button>
-
-                        {/* {bookingUploadedFilename!=''?<span className=" overflow-x-auto max-w-[400px] h-full">{bookingUploadedFilename}</span>:""} */}
-
-                        {/* <MyTextArea
-                    label="About Me"
-                    name="aboutme"
-                    rows="6"
-                    cols=""
-                    styles={styles}
-                    placeholder="Enter Something About You"
-                    className={`${styles.textarea}`}
-                  /> */}
-                      </div>
-                      <div className="form-group row py-sm-2  px-sm-3 my-2 pb-5">
-                        <label className={styles.label} htmlFor="profileurl">
-                          Upload Photo
-                        </label>
-                        <Field
-                          className={`${styles.field} ${
-                            touched.photo && errors.photo ? "is-invalid" : ""
-                          }`}
-                          type="text"
-                          name="photo"
-                          value={url2}
-                          disabled
-                        />
-                        <Button
-                          onClick={(
-                            e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                          ) => {
-                            e.preventDefault();
-                            upload2();
-                          }}
-                          type="button"
-                        >
-                          UPLOAD
-                        </Button>
-
-                        {/* {bookingUploadedFilename!=''?<span className=" overflow-x-auto max-w-[400px] h-full">{bookingUploadedFilename}</span>:""} */}
-
-                        {/* <MyTextArea
-                    label="About Me"
-                    name="aboutme"
-                    rows="6"
-                    cols=""
-                    styles={styles}
-                    placeholder="Enter Something About You"
-                    className={`${styles.textarea}`}
-                  /> */}
-                      </div>
+                      
+                      
 
                       <div className=" flex flex-wrap items-center justify-center rounded-b-md border-t border-gray-200 p-4">
                         <Button
@@ -309,7 +164,6 @@ const NoticesModal = () => {
                           className=""
                           data-mdb-ripple="true"
                           data-mdb-ripple-color="light"
-                  
                         >
                           <div className="flex items-center justify-center">
                             EDIT
@@ -326,7 +180,7 @@ const NoticesModal = () => {
               {/* <span>Already Have an Account ? <button className="bg-transparent text-orange-400 hover:cursor-pointer hover:text-orange-600 " onClick={redirectLogin} >Login</button> </span> */}
             </div>
           </div>
-{/* 
+          {/* 
           <div className="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">
             <button
               data-modal-toggle="defaultModal"
