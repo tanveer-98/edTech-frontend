@@ -1,5 +1,5 @@
 import { Column } from "react-table";
-import {editMembers_,deleteMembers_} from '../../../store/members/membersSlice'
+// import {editMembers_,deleteMembers_} from '../../../store/members/membersSlice'
 interface UserDetails {
     id: string;
     constituency: string;
@@ -8,7 +8,7 @@ interface UserDetails {
     symbol: string;
     photo: string;
   }
-import {toggleEditModal} from '../../../store/members/membersSlice'
+// import {toggleEditModal} from '../../../store/members/membersSlice'
 import {useAppDispatch} from '../../../store'
 import {store} from '../../../store'
 import { useDispatch } from "react-redux";

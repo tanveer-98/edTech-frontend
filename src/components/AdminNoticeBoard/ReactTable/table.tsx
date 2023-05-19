@@ -16,7 +16,7 @@ import {
 import { Button, PageButton } from "./shared/Button";
 import { classNames } from "./shared/Utils";
 import { SortIcon, SortUpIcon, SortDownIcon } from "./shared/Icons";
-import {toggleEditModal,selectCurrentMember,updateCurrentMember, fetchMember, deleteMembers_} from '../../../store/members/membersSlice'
+// import {toggleEditModal,selectCurrentMember,updateCurrentMember, fetchMember, deleteMembers_} from '../../../store/members/membersSlice'
 import {useAppDispatch,useAppSelector} from '../../../store'
 
 // Define a default UI for filtering
@@ -237,10 +237,10 @@ function Table({  data }:any) {
     // @ts-ignore
     dispatch(updateCurrentMember(id))
 
-    dispatch(fetchMember(id!.toString()))
-      .then(()=>{
-        dispatch(toggleEditModal())
-      })
+    // dispatch(fetchMember(id!.toString()))
+    //   .then(()=>{
+    //     dispatch(toggleEditModal())
+    //   })
     
     
     
@@ -249,9 +249,9 @@ function Table({  data }:any) {
   const handleDelete = (id:string)=>{
         // store.dispatch();
     if(window.confirm('Are you sure you want to delete')){
-      dispatch(deleteMembers_({id})).then(()=>{
-        alert('Successfully Deleted Member')
-      })
+      // dispatch(deleteMembers_({id})).then(()=>{
+      //   alert('Successfully Deleted Member')
+      // })
     }
     
   }
