@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Tilt from "react-parallax-tilt";
-const photos = ["photo1.jpeg", "photo2.jpeg", "photo3.jpeg", "photo4.jpeg"];
+const photos = ["photo1.jpeg", "photo2.jpeg", "photo3.jpeg", "photo4.jpeg","photo5.jpeg", "photo6.jpeg"];
 import { toggleScrollbar } from "../functions/toggleScrollbar";
 import { AiOutlineClose } from "react-icons/ai";
 
