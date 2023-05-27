@@ -24,7 +24,7 @@ interface IUserData {
   password: string;
 }
 export const login = (data: IUserData) =>
-  axios.post(`${SERVER}/auth/login`, data);
+  axios.post(`${SERVER}/auth/login/`, data);
 
 export const verifyToken = () => {
   console.log("inside verify token");

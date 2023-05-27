@@ -11,4 +11,4 @@ interface IUserData{
     password : string ;
 }
 export const register  = (data : IUserData) => 
- axios.post(`${SERVER}/auth/register`, data)
+ axios.post(`${SERVER}/users/sign-up`, data)

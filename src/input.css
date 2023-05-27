@@ -478,3 +478,40 @@ duration-300 ease-linear;
 .page-nav-mobile .nav-link:nth-of-type(5) {
   transition-delay: 0.5s;
 }
+
+
+.shadow-1{
+  box-shadow: rgba(255, 254, 254, 0.5) 0px 1px 3px, rgba(255, 255, 255, 0.5) 0px 1px 2px;
+}
+
+
+/* CSS for whatsapp button */
+.whatsapp{
+  opacity: 0;
+  visibility: hidden;
+  position:fixed; 
+  bottom : 6rem; 
+  right: 2rem; 
+  
+  z-index: 10;
+}
+.fade-in-image{
+  
+  visibility: visible;
+  /* animation : fadeIn 0.5s ease-in-out; */
+  transition:visibility 0s, opacity 0.5s ease-in-out 0s;
+  opacity: 1
+}
+.fade-out-image{
+
+  /* animation : TakeOffAndFadeOut 1s fadeOut 0.5s 1s; */
+  transition : visibility 0s ease-in-out 2s , opacity 1s ease-in-out 0s;
+  visibility:hidden;
+  opacity : 0; 
+}
+
+
+.btnTop-tooltip{
+  @apply  hidden md:flex absolute py-2 px-5 w-auto right-20 bg-green-300 shadow-md rounded-md 
+  text-white text-lg font-bold transition-all duration-200  min-w-max scale-0
+}

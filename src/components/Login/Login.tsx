@@ -24,6 +24,11 @@ const styles = {
   textarea:
     "bg-gray-100 w-[300px] sm:w-[600px] lg:w-[800px] focus:shadow-outline rounded block w-full appearance-none focus:bg-gray-200 p-5",
 };
+interface IFormInitialValues{
+  name: string; 
+  email : string; 
+  password : string;
+}
 const Login = () => {
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +45,8 @@ const Login = () => {
   const formInitialValues = {
     email: "",
     password: "",
-  };
+    name : "",
+  } as IFormInitialValues ;
   return (
     <>
       {loading ? (
@@ -65,6 +71,15 @@ const Login = () => {
                   errors.email = "Invalid email address";
                 }
 
+                if (!values.password) {
+                  errors.password = "Email is Required";
+                }
+                if (!values.name) {
+                  errors.password = "Email is Required";
+                }
+                else if(!/^[A-Za-z]+(?:\s[A-Za-z]+)*$/.test(values.name)){
+                  errors.name = "Name should not contain any other characters than alphabets and should not start or end with spaces";
+                }
                 return errors;
               }}
               onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -72,6 +87,7 @@ const Login = () => {
                 const requiredData = {
                   mail: values.email,
                   password: values.password,
+                  name : values.name
                 };
                 console.log("required Data");
                 console.log(requiredData)
@@ -107,7 +123,34 @@ const Login = () => {
               }) => (
                 <div className="w-full flex justify-center my-10 ">
                   <Form className=" form-training w-[300px] sm:w-[600px] lg:w-[800px]">
-                    <div className="form-group row py-sm-2 px-sm-3 ">
+
+                  <div className="form-group row py-sm-2 px-sm-3 ">
+                      <label className={styles.label} htmlFor="email">
+                        Name
+                        {errors.name ? (
+                          <span className={styles.errorMsg}>*</span>
+                        ) : (
+                          ""
+                        )}
+                      </label>
+                      <Field
+                        className={`${styles.field} ${
+                          touched.name && errors.name ? "is-invalid" : ""
+                        }`}
+                        type="text"
+                        name="name"
+                        placeholder="Enter your Full Name"
+                      />
+
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className={styles.errorMsg}
+                      />
+                    </div>
+
+            
+                     <div className="form-group row py-sm-2 px-sm-3 ">
                       <label className={styles.label} htmlFor="email">
                         Email
                         {errors.email ? (
@@ -132,9 +175,10 @@ const Login = () => {
                       />
                     </div>
 
+
                     <div className="form-group row py-sm-2 px-sm-3">
                       <label className={styles.label} htmlFor="password">
-                        Confirm Password{" "}
+                        Password{" "}
                         {errors.password ? (
                           <span className={styles.errorMsg}>*</span>
                         ) : (

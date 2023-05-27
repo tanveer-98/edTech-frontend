@@ -16,15 +16,27 @@ import Gallery from "../components/Gallery/Gallery";
 import Location from "../components/Location";
 // import { Blocks } from "react-loader-spinner";
 import { PropagateLoader } from "react-spinners";
+import ButtonToTop from "../components/ButtonTop";
 const home = () => {
   const dispatch = useAppDispatch();
   const toggle = useAppSelector(selecttoggleNav);
+  
+  const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const ShowbuttonTop = () => {
+    if (window.scrollY > 500) {
+      setShow(true);
+    } else setShow(false);
+  };
+  window.addEventListener("scroll", ShowbuttonTop);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
+
   return (
     <div>
       {loading ? (
@@ -83,6 +95,27 @@ const home = () => {
             <AboutUs />
             <Gallery />
             <Contact />
+            <div
+            className={` whatsapp ${
+              show ? "fade-in-image" : "fade-out-image"
+            } `}
+          >
+            <ButtonToTop
+              text="<img width='200px' src='WhatsAppButtonGreenLarge.png' alt='Luitomania Whatsapp'/>
+              
+              "
+              children={
+                <a href="https://wa.me/7635983518">
+                  <img
+                    height="100px"
+                    width="100px"
+                    src="whatsapp.svg"
+                    alt="web whatsapp luitomania"
+                  />
+                </a>
+              }
+            />
+          </div>
             <Location />
             <Footer />
           </div>
